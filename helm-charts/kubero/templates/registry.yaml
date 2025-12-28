@@ -9,19 +9,6 @@ type: Opaque
 data:
   auth: {{ $basicAuth | b64enc }}
 ---
-{{- $dockerAuth := (printf "%s:%s" .Values.registry.account.username .Values.registry.account.password) | b64enc -}}
-{{- $dockerconfigjson := printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"auth\":\"%s\"}}}" .Values.registry.host .Values.registry.account.username .Values.registry.account.password $dockerAuth -}}
-# copied to pipeline namespace for kpack, nixpack, dockerfile and to pull images
-apiVersion: v1
-kind: Secret
-metadata:
-  name: registry-login
-type: Opaque
-data:
-  username: {{ .Values.registry.account.username | b64enc }}
-  password: {{ .Values.registry.account.password | b64enc }}
-  .dockerconfigjson: {{ $dockerconfigjson | b64enc }}
----
 {{- if .Values.registry.create -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
