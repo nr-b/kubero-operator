@@ -92,6 +92,12 @@ spec:
                   name: kubero-secrets
                   key: KUBERO_SESSION_KEY
                   optional: true
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kubero-secrets
+                  key: SESSION_SECRET
+                  optional: true
             - name: GITHUB_PERSONAL_ACCESS_TOKEN
               valueFrom:
                 secretKeyRef:
