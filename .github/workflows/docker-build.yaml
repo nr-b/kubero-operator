@@ -72,7 +72,7 @@ jobs:
           ./bin/kustomize build config/default > deploy/operator.yaml
 
       - name: Upload operator.yaml artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: operator-yaml
           path: deploy/operator.yaml
