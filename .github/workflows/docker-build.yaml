@@ -69,8 +69,7 @@ jobs:
         run: |
           make bundle
           mkdir -p deploy
-          make kustomize
-          ./bin/kustomize build config/default > deploy/operator.yaml
+          kustomize build config/default > deploy/operator.yaml
 
       - name: Upload operator.yaml artifact
         uses: actions/upload-artifact@v4
